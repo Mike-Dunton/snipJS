@@ -1,0 +1,29 @@
+!!!5
+html
+    head
+        title #{title} - SnipJS
+        script(src='http://code.jquery.com/jquery-1.10.1.min.js')
+        script(src="/js/tagmanager/tagmanager.js")
+        link(rel='stylesheet', href='/js/tagmanager/tagmanager.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(type='text/javascript') .
+            $(function() {
+                $(".tm-input").tagsManager({
+                 prefilled : ["map", "reduce"],
+                 CapitalizeFirstLetter: true,
+                 preventSubmitOnEnter: true,
+                 delimeters: [44, 13],
+                 backspace : [8],
+                 hiddenTagListName: 'theHiddenTagList'
+                });
+            });
+    body
+        header
+            h1 Snip.js
+        .container
+            .main-content
+                block content
+            .sidebar
+                block sidebar
+        footer
+            p Snip yo script
