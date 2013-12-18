@@ -8,7 +8,7 @@ var express = require('express'),
     db      = new sqlite3.Database(config.db.name),
     dbQuery = require('./dbquery'),
     app = express();
-
+app.use(express.bodyParser());
 db.serialize(function () {
     if(!exists) {
         db.run(config.db.createTags);
@@ -31,7 +31,7 @@ app.use(stylus.middleware(
                     compile: compile
                 }));
 app.use(express.static(__dirname + '/public'));
-
+app.use(express.bodyParser());
 
 app.get('/', function (req, res) {
     var tags = [];
@@ -46,5 +46,9 @@ app.get('/', function (req, res) {
             });    
     });
 });
+
+app.post('/submit', function(req, res) {
+    console.log(req.body);
+})
 
 app.listen(3000);
