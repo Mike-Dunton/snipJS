@@ -6,6 +6,7 @@ var express = require('express'),
     exists  = fs.existsSync(config.db.name),
     sqlite3 = require('sqlite3').verbose(),
     db      = new sqlite3.Database(config.db.name),
+    dbQuery = require('./dbquery'),
     app = express();
 
 db.serialize(function () {
@@ -33,9 +34,17 @@ app.use(express.static(__dirname + '/public'));
 
 
 app.get('/', function (req, res) {
-    res.render('index', 
-        { title : 'Home' }
-    )
+    var tags = [];
+    db.parallelize(function() {
+        db.each(dbQuery.tag.getAll, function(err, rows) {
+            tags.push({id: rows.id, name: rows.tag});
+        }, function () {
+            console.log(tags);
+            res.render('index',
+                { title : 'Home',
+                   tags : tags } );
+            });    
+    });
 });
 
 app.listen(3000);

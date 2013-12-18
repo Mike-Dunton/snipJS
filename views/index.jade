@@ -9,7 +9,5 @@ block sidebar
     .widget
         h1 Popular Tags
         p 
-            | #map #reduce #mapReduce #array
-        p
-            | #Vivamus #henreit #arcu #sed #eat #molestie
-            | #peamus
+            each tag, i in tags
+                a(href='/tag/' + tag.id) #{tag.name}   
