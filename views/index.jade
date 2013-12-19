@@ -2,6 +2,7 @@ extend layout
 block content
   form(name="snipForm", action="/submit" method="post")
     textarea(name='snipit', rows=20 cols=80, id='jscode')
+    //div(id = 'editor')
     input(type="text" autocomplete="off" placeholder="Tags" style="width:9em;" class="input-medium tm-input")
     br 
     input(type="submit" value="submit");

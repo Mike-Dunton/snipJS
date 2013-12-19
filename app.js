@@ -49,6 +49,6 @@ app.get('/', function (req, res) {
 
 app.post('/submit', function(req, res) {
     console.log(req.body);
-})
+});
 
 app.listen(3000);

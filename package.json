@@ -1,12 +1,16 @@
 {
-	"name" : "snipJS",
-	"version": "0.0.1",
-	"private" : "true",
-	"dependencies": {
-		"express": "*",
-		"jade" : "*",
-		"stylus" : "*",
-		"nib" : "*",
-	        "sqlite3" : "*"
-	}
+  "name": "snipJS",
+  "version": "0.0.1",
+  "private": "true",
+  "dependencies": {
+    "express": "*",
+    "jade": "*",
+    "stylus": "*",
+    "nib": "*",
+    "sqlite3": "*"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.7.2"
+  }
 }
