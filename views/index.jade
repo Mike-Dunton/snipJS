@@ -3,15 +3,21 @@ block content
   form(name="snipForm", action="/submit" method="post")
     //textarea(name='snipit', rows=20 cols=80, id='jscode')
     script(src="/js/ace/ace.js", type='text/javascript', charset="utf-8")
+    input(type="hidden" name="snipCopy" id="snipCopy")
     div(id = 'editor' name='snipit')
         var x = "All this is syntax highlighted";
     script(type='text/javascript') .    
+        var $editor = $('#editor');
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/javascript");
+        $editor.closest('form').submit(function() {
+            var code = editor.getValue();
+            $editor.prev('input[type=hidden]').val(code);      
+        });
     input(type="text" autocomplete="off" placeholder="Tags" style="width:9em;" class="input-medium tm-input")
     br 
-    input(type="submit" value="submit");
+    input(type="submit" value="submit" onsubmit="$('#snipCopy').val($('#editor').getValue())");
 block sidebar
     .widget
         h1 Popular Tags
