@@ -2,9 +2,8 @@
 html
     head
         title #{title} - SnipJS
-        script(src='http://code.jquery.com/jquery-1.10.1.min.js' type='script/javascript')
-        script(src="/js/tagmanager.js", type='script/javascript')
-        script(src="/js/ace.js", type='script/javascript', 'charset="utf-8')
+        script(src='http://code.jquery.com/jquery-1.10.1.min.js' type='text/javascript')
+        script(src="/js/tagmanager.js", type='text/javascript')
         link(rel='stylesheet', href='/stylesheets/tagmanager.css')
         link(rel='stylesheet', href='/stylesheets/style.css')
         script(type='text/javascript') .
@@ -18,10 +17,6 @@ html
                  hiddenTagListName: 'theHiddenTagList'
                 });
             });
-        script(type='text/javascript') .
-            var editor = ace.edit("editor");
-            editor.setTheme("ace/theme/monokai");
-            editor.getSession().setMode("ace/mode/javascript");
     body
         header
             h1 Snip.js

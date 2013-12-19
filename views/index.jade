@@ -1,8 +1,14 @@
 extend layout
 block content
   form(name="snipForm", action="/submit" method="post")
-    textarea(name='snipit', rows=20 cols=80, id='jscode')
-    //div(id = 'editor')
+    //textarea(name='snipit', rows=20 cols=80, id='jscode')
+    script(src="/js/ace/ace.js", type='text/javascript', charset="utf-8")
+    div(id = 'editor' name='snipit')
+        var x = "All this is syntax highlighted";
+    script(type='text/javascript') .    
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.getSession().setMode("ace/mode/javascript");
     input(type="text" autocomplete="off" placeholder="Tags" style="width:9em;" class="input-medium tm-input")
     br 
     input(type="submit" value="submit");
