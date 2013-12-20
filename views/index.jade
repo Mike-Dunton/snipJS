@@ -9,7 +9,7 @@ block content
     script(type='text/javascript') .    
         var $editor = $('#editor');
         var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/monokai");
+        editor.setTheme("ace/theme/vibrant_ink");
         editor.getSession().setMode("ace/mode/javascript");
         $editor.closest('form').submit(function() {
             var code = editor.getValue();
