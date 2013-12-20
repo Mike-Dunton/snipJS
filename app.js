@@ -49,6 +49,29 @@ app.get('/', function (req, res) {
 
 app.post('/submit', function(req, res) {
     console.log(req.body);
+    var snipBody = req.body.snipCopy,
+        snipTags = req.body.theHiddenTagList.split(",");
+        snipTagObjects = [];
+    db.serialize(function() {
+        snipTags.forEach(function(x) {
+            db.get(dbQuery.tag.get(x), function(err, row) {
+                if( row === undefined) {
+                    db.run(dbQuery.tag.insert(x));
+                    snipTagObjects.push({id : db.lastID, tag : x});
+                } else {
+                    snipTagObjects.push({id : row.id, tag: row.tag});
+                }
+            });    
+        });
+    }, function() {
+            db.serialize(function() {
+            db.run(dbQuery.snip.insert(snipBody));
+            snipBody = db.lastID;
+            snipTagObjects.forEach(function(tag) {
+                db.run(dbQuery.tagStore.insert(snipBody, tag.id));
+            })
+        });
+    });
 });
 
 app.listen(3000);
